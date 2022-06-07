@@ -15,6 +15,7 @@ public class RequestHeaderServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         printStartLine(request);
+        printHeaders(request);
     }
 
     // 1. start line 정보 출력
@@ -48,4 +49,20 @@ public class RequestHeaderServlet extends HttpServlet {
          */
     }
 
+    // 2. Header 모든 정보 출력
+    private void printHeaders(HttpServletRequest request) {
+        System.out.println("--- Headers - start ---");
+    /*
+      // 옛날 방식으로 헤더 정보 조회
+      Enumeration<String> headerNames = request.getHeaderNames();
+      while (headerNames.hasMoreElements()) {
+          String headerName = headerNames.nextElement();
+          System.out.println(headerName + ": " + request.getHeader(headerName));
+      }
+    */
+        request.getHeaderNames().asIterator()
+                .forEachRemaining(headerName -> System.out.println(headerName + " : " + request.getHeader(headerName)));
+        System.out.println("--- Headers - end ---");
+        System.out.println();
+    }
 }
