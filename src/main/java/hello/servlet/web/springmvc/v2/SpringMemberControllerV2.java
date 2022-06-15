@@ -41,6 +41,4 @@ public class SpringMemberControllerV2 {
         modelAndView.addObject("members", members);
         return modelAndView;
     }
-
-
 }
