@@ -38,4 +38,17 @@ public class RequestParamController {
         log.info("username = {}, age = {}", username, age);
         return "ok";
     }
+
+    @RequestMapping("/request-param-required")
+    public String request용ParamRequired(@RequestParam(required = true) String username, @RequestParam(required = false) Integer age) {
+        log.info("username = {}, age = {}", username, age);
+        return "ok";
+    }
+
+    @RequestMapping("/request-param-default")
+    public String requestParamDefault(@RequestParam(required = true, defaultValue = "guest") String username,
+                                      @RequestParam(required = false, defaultValue = "-1") int age) {
+        log.info("username = {}, age = {}", username, age);
+        return "ok";
+    }
 }
