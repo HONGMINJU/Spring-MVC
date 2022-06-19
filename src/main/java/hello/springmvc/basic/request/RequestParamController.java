@@ -26,4 +26,10 @@ public class RequestParamController {
         log.info("username = {}, age = {}", memberName, memberAge);
         return "ok";
     }
+
+    @RequestMapping("/request-param-v3")
+    public String requestParamV3(@RequestParam String username, @RequestParam int age) {
+        log.info("username = {}, age = {}", username, age);
+        return "ok";
+    }
 }
