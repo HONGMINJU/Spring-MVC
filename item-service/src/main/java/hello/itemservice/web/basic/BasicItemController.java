@@ -37,39 +37,41 @@ public class BasicItemController {
         return "basic/addForm";
     }
 
-//    @PostMapping("/add")
-//    public String addItemV1(@RequestParam String itemName,
-//                       @RequestParam int price,
-//                       @RequestParam Integer quantity,
-//                       Model model) {
-//        Item item = new Item();
-//        item.setItemName(itemName);
-//        item.setPrice(price);
-//        item.setQuantity(quantity);
-//        itemRepository.save(item);
-//
-//        model.addAttribute("item", item);
-//
-//        return "basic/item";
-//    }
+    /**
+     * item 생성하는 여러가지 방법
+    @PostMapping("/add")
+    public String addItemV1(@RequestParam String itemName,
+                       @RequestParam int price,
+                       @RequestParam Integer quantity,
+                       Model model) {
+        Item item = new Item();
+        item.setItemName(itemName);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+        itemRepository.save(item);
 
-//    @PostMapping("/add")
-//    public String addItemV2(@ModelAttribute("item") Item item, Model model) {
-//        itemRepository.save(item);
-//        //@ModelAttribute 사용시 자동으로 model에 넣어줌
-//        return "basic/item";
-//    }
+        model.addAttribute("item", item);
 
-//    @PostMapping("/add")
-//    public String addItemV3(@ModelAttribute Item item, Model model) {
-//        itemRepository.save(item);
-//        return "basic/item";
-//    }
+        return "basic/item";
+    }
+
+    @PostMapping("/add")
+    public String addItemV2(@ModelAttribute("item") Item item, Model model) {
+        itemRepository.save(item);
+        //@ModelAttribute 사용시 자동으로 model에 넣어줌
+        return "basic/item";
+    }
+
+    @PostMapping("/add")
+    public String addItemV3(@ModelAttribute Item item, Model model) {
+        itemRepository.save(item);
+        return "basic/item";
+    }*/
 
     @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
-        return "basic/item";
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
